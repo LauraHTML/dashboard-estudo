@@ -6,33 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Trash2, ListTodo } from 'lucide-react';
 import { toast } from "sonner";
 
-import { supabase } from '@/lib/supabase'
 
-export function ListaTarefas({ tasks, onToggle, onDelete }) {
-  const [fetchError, setFetchError] = useState(null);
-  const [tarefas, setTarefas] = useState(null);
-
-  useEffect(() => {
-    const listarTarefas = async () => {
-
-      const { data, error } = await supabase
-      .from('tarefas')
-      .select('titulo')
-      
-      if (error){
-        console.log('Não foi possível encontrar sua tarefas ):')
-        console.error(error)
-        setTarefas(null)
-      }
-      if(data){
-        setTarefas(data)
-        setFetchError(null)
-      }
-
-      listarTarefas()
-  
-    }
-  },[])
+export function ListaTarefas({ tarefas, concluir, deletar }) {
 
   return (
     <div className="cyber-card p-6 h-full flex flex-col">
@@ -44,18 +19,23 @@ export function ListaTarefas({ tasks, onToggle, onDelete }) {
           Tarefas
         </h2>
         <span className="ml-auto text-sm font-mono text-muted-foreground">
-          {/* [{tasks.length}] */}
+          30 tarefas
         </span>
       </div>
 
       <div className="flex-1 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
-        {tarefas && (
-            <div>
-              {tarefas.map(tarefa => {
-                <p>{tarefa.titulo_tarefa}</p>
-              })}
+        {tarefas.map((tarefa) => (
+          <div key={tarefa.id} className="a-fazer grid grid-cols-2 grid-gap-3">
+            <div className="conteudo">
+              <p>{tarefa.titulo}</p>
+              <small>{tarefa.categoria}</small>
             </div>
-        )}
+            <div className='flex flex-row gap-3'>
+              <Button>Completar</Button>
+              <Button onClick={() => deletar(tarefa.id)}><Trash2 /></Button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
