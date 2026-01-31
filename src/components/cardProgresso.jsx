@@ -27,11 +27,11 @@ export function CardProgresso({ completedCount, totalCount, progressPercentage, 
         <div className="text-center py-4">
           <div className="relative inline-flex items-center justify-center">
             <span className="text-6xl font-bold text-primary cyber-text-glow animate-pulse-glow">
-              {porcentagemArredondado > 0 ? (
-                {porcentagemArredondado}
-              ):(
+              {porcentagemArredondado > 0 ? 
+                porcentagemArredondado
+              :
                 "0"
-              )}
+              }
             </span>
             <span className="text-2xl text-primary ml-1">%</span>
           </div>
