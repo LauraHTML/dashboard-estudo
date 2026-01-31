@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { toast } from "sonner";
 
 import { Button } from '@/components/ui/button';
+import {
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+} from "@/components/ui/native-select";
 import { Input } from '@/components/ui/input';
 import { Plus, Zap } from 'lucide-react';
 
@@ -35,16 +40,16 @@ export function AdicionarTarefa({ AdicionarTarefa }) {
       </div>
 
       <form  className="space-y-4" onSubmit={handleTarefa}>
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col gap-2">
         <label className="text-xs font-mono text-foreground uppercase tracking-wider">
             Foco da tarefa
           </label>
-          <select value={categoria} name="" id="" onChange={(e) => setCategoria(e.target.value)}>
-            <option value="">Selecione uma categoria</option>
-            <option value="estudo">Estudo</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="lição">Lição</option>
-          </select>
+          <NativeSelect className={"w-full bg-primary text-foreground"} value={categoria} name="" id="" onChange={(e) => setCategoria(e.target.value)}>
+            <NativeSelectOption value="">Selecione uma categoria</NativeSelectOption>
+            <NativeSelectOption value="estudo">Estudo</NativeSelectOption>
+            <NativeSelectOption value="trabalho">Trabalho</NativeSelectOption>
+            <NativeSelectOption value="lição">Lição</NativeSelectOption>
+          </NativeSelect>
         </div>
         <div className="space-y-2">
           <label className="text-xs font-mono text-foreground uppercase tracking-wider">

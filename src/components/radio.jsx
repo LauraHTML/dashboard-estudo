@@ -81,7 +81,7 @@ export function CardRadio() {
   const station = stations[currentStation];
 
   return (
-    <div className="cyber-card p-6 relative overflow-hidden">
+    <div className="bg-[#34312d] border border-border/50 relative overflow-hidden p-4 rounded-md">
       {/* Animated background */}
       {isPlaying && (
         <div className="absolute inset-0 opacity-20">
