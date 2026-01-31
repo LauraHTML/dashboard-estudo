@@ -11,7 +11,7 @@ export function CardProgresso({ completedCount, totalCount, progressPercentage, 
   return (
     <div className="cyber-card p-6 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+      <div className="absolute top-0 right-0 w-32 h-32 from-primary/10 to-transparent rounded-bl-full" />
       
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-secondary/20 rounded-sm">
@@ -27,7 +27,11 @@ export function CardProgresso({ completedCount, totalCount, progressPercentage, 
         <div className="text-center py-4">
           <div className="relative inline-flex items-center justify-center">
             <span className="text-6xl font-bold text-primary cyber-text-glow animate-pulse-glow">
-              {porcentagemArredondado}
+              {porcentagemArredondado > 0 ? (
+                {porcentagemArredondado}
+              ):(
+                "0"
+              )}
             </span>
             <span className="text-2xl text-primary ml-1">%</span>
           </div>
