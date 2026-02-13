@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>Dashboard de estudos</h1>
 
-## Getting Started
+Um dashboard focado no controle de tarefas e produtividade
+<img width="1660" height="836" alt="2026-02-02 14 20 55 dashboard-estudo vercel app 3448d8505b5a" src="https://github.com/user-attachments/assets/a0d19b54-a1ea-4f3d-847a-cf3d5d5f860a" />
 
-First, run the development server:
+<h1>Tecnologias utilizadas: </h1>
+<ul>
+<li>React</li>
+<li>Next.js</li>
+<li>Tailwindcss</li>
+<li>Shadcn</li>
+</ul>
 
-```bash
+
+<h1>Como rodar o projeto:</h1>
+1- Clone o repositório
+git clone https://github.com/LauraHTML/dashboard-estudo
+
+2-Entre na pasta do projeto:
+cd dashboard-estudo
+
+3-Instalar as dependências do projeto
+npm i
+
+4-Rodar o projeto
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Você também pode acessá-lo em: https://dashboard-estudo.vercel.app
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<h1>Desenvolvido por:</h1>
+Laura Sampaio 
+Linkedin: https://www.linkedin.com/company/microsoft/posts/?feedView=all
