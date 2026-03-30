@@ -1,17 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-//ui
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-    Card,
-    CardAction,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+// ui
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 
 export function Pomodoro() {
@@ -20,21 +11,32 @@ export function Pomodoro() {
     const [modo, setModo] = useState("foco");
     const [ciclos, setCiclos] = useState(0);
 
-    useEffect(() => {
-        let temporizador;
 
-        if (estaRodando) {
-            temporizador = setInterval(() => {
-                setTempo((prev) => {
-                    if (prev === 1) {
-                        handleTemporizadorAcaba();
-                        return 0;
-                    }
-                    return prev - 1;
-                });
-            }, 1000)
-        }
-        return () => clearInterval(temporizador);
+    const inicioRef = useRef(null);
+    const tempoAoIniciarRef = useRef(25 * 60);
+
+    useEffect(() => {
+        if (!estaRodando) return;
+
+     
+        inicioRef.current = Date.now();
+        tempoAoIniciarRef.current = tempo;
+
+        const intervalo = setInterval(() => {
+            const decorrido = Math.floor((Date.now() - inicioRef.current) / 1000);
+            const novoTempo = tempoAoIniciarRef.current - decorrido;
+
+            if (novoTempo <= 0) {
+                clearInterval(intervalo);
+                setTempo(0);
+                handleTemporizadorAcaba();
+                return;
+            }
+
+            setTempo(novoTempo);
+        }, 500); 
+
+        return () => clearInterval(intervalo);
     }, [estaRodando]);
 
     const handleTemporizadorAcaba = () => {
@@ -47,31 +49,31 @@ export function Pomodoro() {
             setTempo(25 * 60);
             setCiclos((c) => c + 1);
         }
-    }
+    };
 
     const formatarTempo = () => {
-        const minutos = Math.floor(tempo / 60)
-            .toString()
-            .padStart(2, "0");
-        const secundos = (tempo % 60).toString().padStart(2, "0");
-        return `${minutos}:${secundos}`
-    }
+        const minutos = Math.floor(tempo / 60).toString().padStart(2, "0");
+        const segundos = (tempo % 60).toString().padStart(2, "0");
+        return `${minutos}:${segundos}`;
+    };
 
     const handleResetar = () => {
         setEstaRodando(false);
         setTempo(modo === "foco" ? 25 * 60 : 5 * 60);
-    }
+    };
 
-    return (<>
+    return (
         <div>
             <Card>
                 <CardHeader>
-                    <CardTitle>Modo foco</CardTitle>
+                    <CardTitle>{modo === "foco" ? "Modo foco" : "Pausa"}</CardTitle>
                     <CardDescription>Tempo restante</CardDescription>
                     <h1 className="text-8xl">{formatarTempo()}</h1>
                 </CardHeader>
-                <CardContent className={"flex flex-row gap-4"}>
-                    <Button variant="secondary" onClick={() => setEstaRodando(!estaRodando)}>{estaRodando ? "Pausa" : "Iniciar"}</Button>
+                <CardContent className="flex flex-row gap-4">
+                    <Button variant="secondary" onClick={() => setEstaRodando(!estaRodando)}>
+                        {estaRodando ? "Pausa" : "Iniciar"}
+                    </Button>
                     <Button variant="secondary" onClick={handleResetar}>Resetar</Button>
                 </CardContent>
                 <CardFooter>
@@ -79,5 +81,5 @@ export function Pomodoro() {
                 </CardFooter>
             </Card>
         </div>
-    </>)
+    );
 }
